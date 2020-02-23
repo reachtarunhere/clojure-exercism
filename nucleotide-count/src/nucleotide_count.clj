@@ -10,6 +10,6 @@
 )
 
 (defn count-of-nucleotide-in-strand [nucleotide strand] ;; <- Arglist goes here
-  (if (some #{nucleotide} [\A \T \C \G])
-    ((nucleotide-counts strand) nucleotide)
-    (throw (Throwable. "Bad Nucleotide"))))
+  {:pre [(#{\A \T \C \G} nucleotide)]}
+  ((nucleotide-counts strand) nucleotide))
+
