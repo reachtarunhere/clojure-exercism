@@ -1,15 +1,12 @@
 (ns phone-number
   (:use [clojure.string :only [join]]))  
 
-(defn- only-numeric-chars [num-str]
-  (filter #{\0 \1 \2 \3 \4 \5 \6 \7 \8 \9} num-str))
-
 (defn number [num-string]
-  (let [num-only-str (only-numeric-chars num-string)] 
+  (let [num-only (re-seq #"\d" num-string)]
     (join
      (cond
-       (= 10 (count num-only-str)) num-only-str
-       (and (= (count num-only-str) 11) (= \1 (first num-only-str))) (take-last 10 num-only-str)
+       (= 10 (count num-only)) num-only
+       (and (= (count num-only) 11) (= "1" (first num-only))) (take-last 10 num-only)
        :else (repeat 10 0)))))
   
 (defn area-code [num-string] ;; <- arglist goes here
