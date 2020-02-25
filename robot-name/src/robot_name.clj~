@@ -1,0 +1,16 @@
+(ns robot-name)
+
+(defn generate-robo-name []
+  (str (repeatedly 2 (rand-nth (map char (range 65 91)))) (rand-nth (range 100 1000))))
+
+(defn robot [] ;; <- arglist goes here
+  {:name (generate-robo-name)}
+)
+
+(defn robot-name [robot] ;; <- arglist goes here
+  (:name robot)
+)
+
+(defn reset-name [bot] ;; <- arglist goes here
+  (robot)
+)
