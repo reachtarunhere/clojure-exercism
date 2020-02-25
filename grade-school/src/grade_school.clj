@@ -9,6 +9,7 @@
          (vec (conj (school grade) name)))
 )
 
-(defn sorted [school]  ;; <- arglist goes here
-  (into (sorted-map) (map (fn [[k v]] [k (sort v)]) school))
+(defn sorted [school]  ;; <- arglist goes here  
+  (into (sorted-map)
+        (zipmap (keys school) (map sort (vals school))))
 )
