@@ -5,8 +5,7 @@
 )
 
 (defn add [school name grade]  ;; <- arglist goes here
-  (assoc school grade
-         (vec (conj (school grade) name)))
+  (merge-with concat school {grade [name]})
 )
 
 (defn sorted [school]  ;; <- arglist goes here  
