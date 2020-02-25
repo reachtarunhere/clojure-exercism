@@ -1,16 +1,14 @@
 (ns clock)
 
 (defn clock->string [clock] ;; <- arglist goes here
-    (format "%02d:%02d" (first clock) (second clock))
+    (format "%02d:%02d" (quot clock 60) (mod clock 60))
 )
 
 (defn clock [hours minutes] ;; <- arglist goes here
-  (let [total-mins (mod (+ (* 60 hours) minutes)  (* 60 24))
-        real-hrs (quot total-mins 60)
-        real-mins (mod total-mins 60)]
-    (list real-hrs real-mins))
+  (let [total-mins (+ (* 60 hours) minutes) mins-in-day (* 60 24)]
+  (mod total-mins mins-in-day))
 )
 
-(defn add-time [clock-tuple time] ;; <- arglist goes here
-  (clock (first clock-tuple) (+ time (second clock-tuple)))
+(defn add-time [input-clock time] ;; <- arglist goes here
+  (clock 0 (+ input-clock time))
 )
